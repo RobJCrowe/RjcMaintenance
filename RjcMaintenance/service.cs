@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
+
 namespace RjcMaintenance
 {
     class service
@@ -12,13 +13,13 @@ namespace RjcMaintenance
         internal DateTime start, finish;
         internal TimeSpan duration;
         internal int returnCode;
-        public event EventHandler<serviceEventArgs> startEvent; 
+        public event EventHandler<serviceEventArgs> startEvent;
         public event EventHandler<serviceEventArgs> endEvent;
         public service() { }
-        public service(string name){ this.name = name; }
+        public service(string name) { this.name = name; }
 
         private void write(string s) { Console.WriteLine(s); }
-        
+
         public static void ExecuteServices(List<service> services)
         {
             foreach (var s in services)
@@ -34,23 +35,44 @@ namespace RjcMaintenance
 
         public void Execute() //cf https://stackoverflow.com/a/10072082
         {
+            greeting(this);
             var process = new Process();
-            this.startEvent(this, new serviceEventArgs(this.owner, this.name, this.location, this.additionalArgs, this.start, this.finish, this.duration, this.returnCode));
             process.StartInfo.FileName = this.location;
             if (!string.IsNullOrEmpty(this.additionalArgs)) { process.StartInfo.Arguments = this.additionalArgs; }
-            process.StartInfo.CreateNoWindow = false;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            process.StartInfo.UseShellExecute = true;
-
+            process.StartInfo.CreateNoWindow = true; process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true; process.StartInfo.RedirectStandardError = true;
+            StringBuilder stdOutput = new StringBuilder();
+            process.OutputDataReceived += (sender, args) => stdOutput.AppendLine(args.Data);
             try
             {
                 process.Start();
                 process.BeginOutputReadLine();
                 process.WaitForExit();
                 this.returnCode = process.ExitCode;
-                this.endEvent(this, new serviceEventArgs(this.owner, this.name, this.location, this.additionalArgs, this.start, this.finish, this.duration, this.returnCode));
+                exit(this, stdOutput);
             }
             catch (Exception e) { throw new Exception("OS error while executing " + this.name + ": " + e.Message, e); }
         }
+
+        private void greeting(service s)
+        {
+            if (this.startEvent != null)
+            {
+                this.startEvent(this, new serviceEventArgs(this.owner, this.name, this.location, this.additionalArgs, this.start, this.finish, this.duration, this.returnCode));
+            }
+            write(DateTime.Now.ToString("yyyy-MM-dd hh:mm:sstt") + " --Starting: " + s.name);
+        }
+        private void exit(service s, StringBuilder sb)
+        {
+            write(sb.ToString());
+            if (this.endEvent != null)
+            {
+                this.endEvent(this, new serviceEventArgs(this.owner, this.name, this.location, this.additionalArgs, this.start, this.finish, this.duration, this.returnCode));
+            }
+            write(DateTime.Now.ToString("yyyy-MM-dd hh:mm:sstt") + " --Finished: " + s.name + " Return Code: " + this.returnCode);
+            write(Environment.NewLine);
+        }
+
     }
 }

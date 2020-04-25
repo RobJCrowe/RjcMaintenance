@@ -27,10 +27,13 @@ namespace RjcMaintenance
             }
         }
 
-        private void SampleServices() 
+        
+       
+        public List<service> GetServices(){ return services;}
+        private void SampleServices()
         {
             service service01 = new service();
-            service01.name = "service01"; service01.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service01.additionalArgs = "1 service01";
+            service01.name = "service01"; service01.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service01.additionalArgs = "1 service01 true";
             services.Add(service01);
             service service02 = new service();
             service02.name = "service02"; service02.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service02.additionalArgs = "2 service02";
@@ -42,7 +45,5 @@ namespace RjcMaintenance
             service04.name = "service04"; service04.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service04.additionalArgs = "4 service04";
             services.Add(service04);
         }
-       
-        public List<service> GetServices(){ return services;}
     }
 }
