@@ -13,7 +13,7 @@ namespace RjcMaintenance
             Settings settings = Settings.GetSettings(); // grab settings file and parse into object/list method
             // create logger instance
 
-            List<service> temp = settings.GetServices();
+            //List<service> temp = settings.GetServices();
             service.ExecuteServices(settings);
             
             //settings.WriteSettings();
