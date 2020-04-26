@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RjcMaintenanceConfig"
         mc:Ignorable="d"
         Title="Rjc Computer Maintenance Configuration" Height="450" Width="800">
-    <Grid  Background="DarkGray" Margin="0,0,2,0">
+    <Grid  Background="DarkGray" Margin="0,0,0,0">
         <DataGrid HorizontalAlignment="Left" Height="314" Margin="324,19,0,0" VerticalAlignment="Top" Width="196"/>
         <Button Content="Add Service" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
         <Button Content="Edit Service" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
