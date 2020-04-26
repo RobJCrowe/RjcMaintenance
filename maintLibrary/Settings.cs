@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using RjcMaintenance.Helper;
+using System.IO;
+using Newtonsoft.Json;
 
-namespace RjcMaintenance
+
+namespace maintLibrary
 {
-    class Settings
+    public class Settings
     {
-        string currDir;
+        
+        static string currDir;
+        static string settingsFilename = @"\settings.json";
+        [JsonProperty]
         List<service> services = new List<service>();
         // other variables
 
@@ -15,7 +20,8 @@ namespace RjcMaintenance
         {
             try
             {
-                SampleServices();
+                currDir = Directory.GetCurrentDirectory();
+                //SampleServices();
                 
                 //open file
                 //parse file add to services as necessary
@@ -27,9 +33,39 @@ namespace RjcMaintenance
             }
         }
 
-        
-       
         public List<service> GetServices(){ return services;}
+        
+        public static Settings GetSettings()
+        {
+            try
+            {
+                currDir = Directory.GetCurrentDirectory();
+            if (File.Exists(currDir + settingsFilename))
+                {
+                    string input = File.ReadAllText(currDir + settingsFilename);
+                    Settings tempSettings = JsonConvert.DeserializeObject<Settings>(input);
+                    return tempSettings;
+                }
+             return new Settings();
+            }
+            catch(Exception e){ return null; /* log- Console.WriteLine("Reading settings file failed."); */ }
+        }
+        
+        public void WriteSettings()
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                // log Console.WriteLine("Writting settings failed);
+            }
+            string output = JsonConvert.SerializeObject(this, Formatting.Indented);
+            System.IO.File.WriteAllText(currDir+settingsFilename, output);
+        }
+
+        
         private void SampleServices()
         {
             service service01 = new service();

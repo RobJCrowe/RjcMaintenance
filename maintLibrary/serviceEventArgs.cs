@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RjcMaintenance.Helper
+namespace maintLibrary
 {
-    class serviceEventArgs : EventArgs
+    public class serviceEventArgs : EventArgs
     {
         string owner; string name; string location; string additionalArgs;
         DateTime start; DateTime finish; TimeSpan duration;

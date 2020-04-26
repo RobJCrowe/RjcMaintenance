@@ -1,33 +1,37 @@
-﻿using RjcMaintenance.Helper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Newtonsoft.Json;
 
 
-namespace RjcMaintenance
+namespace maintLibrary
 {
-    class service
+    public class service
     {
+        [JsonProperty]
         internal string owner, name, location, additionalArgs;
         internal DateTime start, finish;
         internal TimeSpan duration;
+        [JsonProperty]
+        internal bool active = true;
         internal int returnCode;
         public event EventHandler<serviceEventArgs> startEvent;
         public event EventHandler<serviceEventArgs> endEvent;
+        
         public service() { }
-        public service(string name) { this.name = name; }
-
         private void write(string s) { Console.WriteLine(s); }
 
-        public static void ExecuteServices(List<service> services)
+        public static void ExecuteServices(Settings settings)
         {
-            foreach (var s in services)
+            foreach (var s in settings.GetServices())
             {
-                s.start = DateTime.Now;
+                if (s.active == false) 
+                { 
+                
+                    continue;
+                }
                 s.Execute();
-                s.finish = DateTime.Now;
-                s.duration = s.finish.Subtract(s.start);
             }
             // sub to logger
             // unsub logger
@@ -61,10 +65,13 @@ namespace RjcMaintenance
             {
                 this.startEvent(this, new serviceEventArgs(this.owner, this.name, this.location, this.additionalArgs, this.start, this.finish, this.duration, this.returnCode));
             }
+            s.start = DateTime.Now;
             write(DateTime.Now.ToString("yyyy-MM-dd hh:mm:sstt") + " --Starting: " + s.name);
         }
         private void exit(service s, StringBuilder sb)
         {
+            s.finish = DateTime.Now;
+            s.duration = s.finish.Subtract(s.start);
             write(sb.ToString());
             if (this.endEvent != null)
             {

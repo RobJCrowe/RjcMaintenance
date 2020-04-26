@@ -1,5 +1,7 @@
 ﻿using RjcMaintenance.Helper;
 using System;
+using maintLibrary;
+using System.Collections.Generic;
 
 namespace RjcMaintenance
 {
@@ -7,11 +9,14 @@ namespace RjcMaintenance
     {
         static void Main(string[] args)
         {
-            Settings settings = new Settings(); // grab settings file and parse into object/list method
+            
+            Settings settings = Settings.GetSettings(); // grab settings file and parse into object/list method
             // create logger instance
 
-            service.ExecuteServices(settings.GetServices());
+            List<service> temp = settings.GetServices();
+            service.ExecuteServices(settings);
             
+            //settings.WriteSettings();
 
             // Run report
 

@@ -5,4 +5,18 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Security.Permissions" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\maintLibrary\maintLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="maintLibrary">
+      <HintPath>..\maintLibrary\bin\Debug\maintLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
