@@ -44,9 +44,14 @@ namespace RjcMaintenanceConfig
             this.Close();
         }
 
+        private void tempSetValues()
+        {
+            _service.name = tbName.Text;_service.location = tbLocation.Text;_service.additionalArgs = tbArgs.Text;
+        }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            tempSetValues();
+            if (_settings.addService(_service)) { this.Close(); }
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Newtonsoft.Json;
-
+using System.ComponentModel;
 
 namespace maintLibrary
 {
@@ -13,7 +13,7 @@ namespace maintLibrary
         static string currDir;
         static string settingsFilename = @"\settings.json";
         [JsonProperty]
-        List<service> services = new List<service>();
+        public BindingList<service> services = new BindingList<service>();
         // other variables
 
         public Settings()
@@ -33,7 +33,7 @@ namespace maintLibrary
             }
         }
 
-        public List<service> GetServices(){ return services;}
+        public BindingList<service> GetServices(){ return services;}
         
         public static Settings GetSettings()
         {
@@ -65,6 +65,18 @@ namespace maintLibrary
             System.IO.File.WriteAllText(currDir+settingsFilename, output);
         }
 
+        public bool addService(service s)
+            {
+                try
+                {
+                    services.Add(s);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+        }
         
         private void SampleServices()
         {

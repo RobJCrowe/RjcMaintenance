@@ -10,27 +10,23 @@ namespace maintLibrary
     public class service
     {
         [JsonProperty]
-        internal string owner, name, location, additionalArgs;
+        public string owner, name, location, additionalArgs;
         internal DateTime start, finish;
         internal TimeSpan duration;
         [JsonProperty]
-        internal bool active = true;
+        public bool active = true;
         internal int returnCode;
         public event EventHandler<serviceEventArgs> startEvent;
         public event EventHandler<serviceEventArgs> endEvent;
         
         public service() { }
         private void write(string s) { Console.WriteLine(s); }
-
+        
         public static void ExecuteServices(Settings settings)
         {
             foreach (var s in settings.GetServices())
             {
-                if (s.active == false) 
-                { 
-                
-                    continue;
-                }
+                if (s.active == false) { continue; }
                 s.Execute();
             }
             // sub to logger
