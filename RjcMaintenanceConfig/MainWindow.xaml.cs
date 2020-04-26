@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using maintLibrary;
 
 namespace RjcMaintenanceConfig
 {
@@ -24,6 +25,12 @@ namespace RjcMaintenanceConfig
         {
             InitializeComponent();
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditService aeService = new AddEditService(new Settings(), new service(), true);
+            aeService.ShowDialog();
         }
     }
 }
