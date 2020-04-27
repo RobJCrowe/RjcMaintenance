@@ -1,27 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json;
 
 
 namespace maintLibrary
 {
-    public class service
+
+    public class service : INotifyPropertyChanged
     {
         [JsonProperty]
-        public string owner, name, location, additionalArgs;
+        public string owner, location, additionalArgs;
+        private string name; private bool active;
+        public string Name
+        {
+            get { return name; }
+            set { 
+                if (value != name)
+                    {
+                    name = value;
+                    NotifyPropertyChanged();
+                    }
+                }
+        }
+
+        public bool Active
+        {
+            get { return active; }
+            set { active = value;
+                if (value != active)
+                {
+                    active = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         internal DateTime start, finish;
         internal TimeSpan duration;
-        [JsonProperty]
-        public bool active = true;
         internal int returnCode;
         public event EventHandler<serviceEventArgs> startEvent;
         public event EventHandler<serviceEventArgs> endEvent;
-        
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public service() { }
         private void write(string s) { Console.WriteLine(s); }
-        
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public static void ExecuteServices(Settings settings)
         {
             foreach (var s in settings.services)

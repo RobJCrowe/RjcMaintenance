@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -23,31 +24,28 @@ namespace RjcMaintenanceConfig
     public partial class MainWindow : Window
     {
         Settings settings;
-        public MainWindow()
-        {
-            InitializeComponent();
-            
-        }
+        //ObservableCollection<service> tempServices = new ObservableCollection<service>();
+        public MainWindow() { InitializeComponent(); }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             service temp = new service();
             AddEditService aeService = new AddEditService(settings, temp, true);
             aeService.ShowDialog();
         }
-        private void bindDgv() { dgv.ItemsSource = settings.services; }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             settings = Settings.GetSettings();
-            bindDgv();
+            //tempServices = settings.services;
+            testDgv.ItemsSource = settings.services;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) { Environment.Exit(0); }
+        private void ExitButton_Click(object sender, RoutedEventArgs e) { Environment.Exit(0); }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            BindingList<service> temp = new BindingList<service>();
+            ObservableCollection<service> temp = new ObservableCollection<service>();
             temp = settings.services;
         }
     }

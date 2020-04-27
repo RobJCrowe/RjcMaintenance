@@ -4,16 +4,17 @@ using System.Text;
 using System.IO;
 using Newtonsoft.Json;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace maintLibrary
 {
     public class Settings
     {
 
-        static string currDir;
+        static string currDir; static public bool testDB;
         static string settingsFilename = @"\settings.json";
         [JsonProperty]
-        public BindingList<service> services { get; set; }
+        public ObservableCollection<service> services { get; set; }
         // other variables
 
         public Settings()
@@ -22,9 +23,6 @@ namespace maintLibrary
             {
                 currDir = Directory.GetCurrentDirectory();
                 //SampleServices();
-                
-                //open file
-                //parse file add to services as necessary
             }
             catch (Exception)
             {
@@ -79,16 +77,16 @@ namespace maintLibrary
         private void SampleServices()
         {
             service service01 = new service();
-            service01.name = "service01"; service01.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service01.additionalArgs = "1 service01 true";
+            service01.Name = "service01"; service01.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service01.additionalArgs = "1 service01 true";
             services.Add(service01);
             service service02 = new service();
-            service02.name = "service02"; service02.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service02.additionalArgs = "2 service02";
+            service02.Name = "service02"; service02.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service02.additionalArgs = "2 service02";
             services.Add(service02);
             service service03 = new service();
-            service03.name = "service03"; service03.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service03.additionalArgs = "3 service03";
+            service03.Name = "service03"; service03.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service03.additionalArgs = "3 service03";
             services.Add(service03);
             service service04 = new service();
-            service04.name = "service04"; service04.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service04.additionalArgs = "4 service04";
+            service04.Name = "service04"; service04.location = @"M:\repo\SleepRjc\SleepRjc\bin\Debug\netcoreapp3.1\SleepRjc.exe"; service04.additionalArgs = "4 service04";
             services.Add(service04);
         }
     }

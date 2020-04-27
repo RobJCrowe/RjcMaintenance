@@ -46,7 +46,7 @@ namespace RjcMaintenanceConfig
 
         private void tempSetValues()
         {
-            _service.name = tbName.Text;_service.location = tbLocation.Text;_service.additionalArgs = tbArgs.Text;
+            _service.Name = tbName.Text;_service.location = tbLocation.Text;_service.additionalArgs = tbArgs.Text;
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
