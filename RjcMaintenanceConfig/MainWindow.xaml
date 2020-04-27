@@ -8,7 +8,17 @@
         Title="Rjc Computer Maintenance Configuration" Height="450" Width="800"
         Loaded="Window_Loaded">
     <Grid  Background="DarkGray" Margin="0,0,0,0">
-        <DataGrid x:Name="dgv" HorizontalAlignment="Left" Height="314" Margin="324,19,0,0" VerticalAlignment="Top" Width="196" RowHeight="30" ColumnWidth="100" Background="LightGray" RowBackground="LightCoral" AlternatingRowBackground="LightBlue" CanUserReorderColumns="False" CanUserSortColumns = "False"  VerticalScrollBarVisibility="Visible" SelectionMode="Extended" BorderBrush="Gray" BorderThickness="5" GridLinesVisibility="None"/>
+        <DataGrid x:Name="dgv" HorizontalAlignment="Left" Height="314" Margin="324,19,0,0" 
+            VerticalAlignment="Top" Width="284" RowHeight="30" ColumnWidth="100" Background="LightGray" 
+            RowBackground="LightGray" AlternatingRowBackground="LightBlue" CanUserReorderColumns="False"
+            CanUserSortColumns = "False"  VerticalScrollBarVisibility="Visible" SelectionMode="Single" 
+            BorderBrush="Gray" BorderThickness="5" GridLinesVisibility="None" AutoGenerateColumns="False"
+            SelectionUnit="FullRow"  HeadersVisibility="Column" IsReadOnly="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding name}"  />
+                <DataGridCheckBoxColumn Header="Active" Binding="{Binding active}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Content="Add Service" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Button_Click"/>
         <Button Content="Edit Service" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
         <Button Content="Remove Service" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
@@ -17,6 +27,7 @@
         <CheckBox Content="Log to DB" HorizontalAlignment="Left" Margin="165,84,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Button Content="Save Settings" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="133" FontSize="16" RenderTransformOrigin="0.421,4.8"/>
         <Button Content="Exit" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="133" FontSize="16" RenderTransformOrigin="0.421,4.8" Click="Button_Click_1"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="660,69,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
 
     </Grid>
 </Window>

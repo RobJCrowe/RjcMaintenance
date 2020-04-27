@@ -24,7 +24,7 @@ namespace maintLibrary
         
         public static void ExecuteServices(Settings settings)
         {
-            foreach (var s in settings.GetServices())
+            foreach (var s in settings.services)
             {
                 if (s.active == false) { continue; }
                 s.Execute();

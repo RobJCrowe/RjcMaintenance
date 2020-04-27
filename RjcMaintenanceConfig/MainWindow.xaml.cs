@@ -35,10 +35,7 @@ namespace RjcMaintenanceConfig
             AddEditService aeService = new AddEditService(settings, temp, true);
             aeService.ShowDialog();
         }
-        private void bindDgv()
-        {
-            dgv.ItemsSource = settings.services;
-        }
+        private void bindDgv() { dgv.ItemsSource = settings.services; }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -46,10 +43,12 @@ namespace RjcMaintenanceConfig
             bindDgv();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
+        private void Button_Click_1(object sender, RoutedEventArgs e) { Environment.Exit(0); }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            BindingList<service> temp = new BindingList<service>();
+            temp = settings.services;
+        }
     }
 }

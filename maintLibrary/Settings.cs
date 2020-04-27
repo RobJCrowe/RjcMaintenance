@@ -9,11 +9,11 @@ namespace maintLibrary
 {
     public class Settings
     {
-        
+
         static string currDir;
         static string settingsFilename = @"\settings.json";
         [JsonProperty]
-        public BindingList<service> services = new BindingList<service>();
+        public BindingList<service> services { get; set; }
         // other variables
 
         public Settings()
@@ -33,8 +33,6 @@ namespace maintLibrary
             }
         }
 
-        public BindingList<service> GetServices(){ return services;}
-        
         public static Settings GetSettings()
         {
             try
