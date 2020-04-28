@@ -29,6 +29,8 @@ namespace RjcMaintenanceConfig
         {
             InitializeComponent();
             _settings = settings;_service = service;_isNew = isNew;
+            if (isNew) { Title = "Add Service"; }
+            else { Title = "Edit Service"; }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

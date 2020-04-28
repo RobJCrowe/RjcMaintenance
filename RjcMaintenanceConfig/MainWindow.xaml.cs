@@ -37,8 +37,8 @@ namespace RjcMaintenanceConfig
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             settings = Settings.GetSettings();
-            //tempServices = settings.services;
             testDgv.ItemsSource = settings.services;
+            testDgv.CanUserAddRows = false;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e) { Environment.Exit(0); }

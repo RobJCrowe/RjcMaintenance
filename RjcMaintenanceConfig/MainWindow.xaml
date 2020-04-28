@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RjcMaintenanceConfig"
         mc:Ignorable="d"
         Title="Rjc Computer Maintenance Configuration V 0.1" Height="450" Width="650"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid  Background="DarkGray" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
