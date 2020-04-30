@@ -62,18 +62,17 @@ namespace maintLibrary
         }
 
         public bool addService(service s)
-            {
-                try
-                {
-                    services.Add(s);
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+        {
+                try { services.Add(s); return true; }
+                catch (Exception) { return false; }
         }
-        
+
+        public bool editService(service s, int index)
+        {
+            try { services.Insert(index, s); services.RemoveAt(index + 1); return true; }
+            catch (Exception) { return false; }
+        }
+
         private void SampleServices()
         {
             service service01 = new service();

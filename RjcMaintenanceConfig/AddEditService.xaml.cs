@@ -25,15 +25,21 @@ namespace RjcMaintenanceConfig
         Settings _settings;
         service _service;
         bool _isNew;
-        public AddEditService(Settings settings, service service, bool isNew)
+        int _index;
+        public AddEditService(Settings settings, service service, bool isNew, int index)
         {
             InitializeComponent();
-            _settings = settings;_service = service;_isNew = isNew;
-            if (isNew) { Title = "Add Service"; }
-            else { Title = "Edit Service"; }
+            _settings = settings;_service = service;_isNew = isNew; _index = index;
+            if (isNew == true) { Title = "Add Service"; }
+            else
+            {
+                Title = "Edit Service";
+                tbName.Text = service.Name; tbLocation.Text = service.location; 
+                tbArgs.Text = service.additionalArgs; cbActive.IsChecked = service.Active;
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Browse_Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = @"C:\";
@@ -41,19 +47,16 @@ namespace RjcMaintenanceConfig
                 tbLocation.Text = openFileDialog.FileName;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Exit_Button(object sender, RoutedEventArgs e) { this.Close(); }
+        
+        private void Save_Button(object sender, RoutedEventArgs e)
         {
+            _service.Name = tbName.Text; _service.location = tbLocation.Text; _service.additionalArgs = tbArgs.Text;
+            //_service.Active = cbActive.IsChecked.HasValue ? cbActive.IsChecked.Value : false;
+            _service.Active = cbActive.IsChecked ?? false;
+            if (_isNew) { _settings.addService(_service); }
+            else { _settings.editService(_service, _index); }
             this.Close();
-        }
-
-        private void tempSetValues()
-        {
-            _service.Name = tbName.Text;_service.location = tbLocation.Text;_service.additionalArgs = tbArgs.Text;
-        }
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            tempSetValues();
-            if (_settings.addService(_service)) { this.Close(); }
         }
     }
 }

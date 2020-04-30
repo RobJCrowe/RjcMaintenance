@@ -26,11 +26,21 @@ namespace RjcMaintenanceConfig
         Settings settings;
         //ObservableCollection<service> tempServices = new ObservableCollection<service>();
         public MainWindow() { InitializeComponent(); }
-
+        private void resetSelectionIndex() { testDgv.SelectedIndex = -1; }
+        private bool hasSelection() 
+        {
+            if (testDgv.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must make a selection.", "Warning!");
+                return false;
+            }
+            return true;
+        }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            resetSelectionIndex();
             service temp = new service();
-            AddEditService aeService = new AddEditService(settings, temp, true);
+            AddEditService aeService = new AddEditService(settings, temp, true, 0);
             aeService.ShowDialog();
         }
 
@@ -47,6 +57,16 @@ namespace RjcMaintenanceConfig
         {
             ObservableCollection<service> temp = new ObservableCollection<service>();
             temp = settings.services;
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (hasSelection())
+            {
+                AddEditService aeService = new AddEditService(settings, settings.services[testDgv.SelectedIndex], false, testDgv.SelectedIndex);
+                resetSelectionIndex();
+                aeService.ShowDialog();
+            }
         }
     }
 }

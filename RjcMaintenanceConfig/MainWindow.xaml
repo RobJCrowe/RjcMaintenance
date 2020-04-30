@@ -12,7 +12,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Content="Add Service" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="AddButton_Click"/>
-        <Button x:Name="Edit" Content="Edit Service" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
+        <Button x:Name="Edit" Content="Edit Service" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Edit_Click"/>
         <Button x:Name="Remove" Content="Remove Service" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
         <Button x:Name="Up" Content="Move Up" HorizontalAlignment="Left" Margin="153,19,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
         <Button x:Name="Down" Content="Move Down" HorizontalAlignment="Left" Margin="153,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
