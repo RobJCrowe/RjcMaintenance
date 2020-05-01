@@ -8,26 +8,27 @@
         Title="Rjc Computer Maintenance Configuration V 0.1" Height="450" Width="650"
         Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid  Background="DarkGray" Margin="0,0,0,0">
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>-->
         <Button Content="Add Service" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="AddButton_Click"/>
         <Button x:Name="Edit" Content="Edit Service" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Edit_Click"/>
-        <Button x:Name="Remove" Content="Remove Service" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
-        <Button x:Name="Up" Content="Move Up" HorizontalAlignment="Left" Margin="153,19,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
-        <Button x:Name="Down" Content="Move Down" HorizontalAlignment="Left" Margin="153,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16"/>
+        <Button x:Name="Remove" Content="Remove Service" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Remove_Click"/>
+        <Button x:Name="Up" Content="Move Up" HorizontalAlignment="Left" Margin="153,19,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Up_Click"/>
+        <Button x:Name="Down" Content="Move Down" HorizontalAlignment="Left" Margin="153,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Down_Click"/>
         <CheckBox x:Name="Log" Content="Log to DB" HorizontalAlignment="Left" Margin="153,83,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Button x:Name="Save" Content="Save Settings" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="133" FontSize="16" RenderTransformOrigin="0.421,4.8"/>
         <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="133" FontSize="16" RenderTransformOrigin="0.421,4.8" Click="ExitButton_Click"/>
         <Button x:Name="temp" Content="Examine source" HorizontalAlignment="Left" Margin="153,171,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click_2" RenderTransformOrigin="-3.446,1.376"/>
+        <!--AlternatingRowBackground="#FF818383"-->
         <DataGrid x:Name="testDgv" HorizontalAlignment="Left" Height="333" Margin="310,16,0,0" VerticalAlignment="Top"
             Width="288" AutoGenerateColumns="False" Background="LightGray" 
-            RowBackground="LightGray" AlternatingRowBackground="#FF818383" CanUserReorderColumns="False"
+            RowBackground="LightGray"  CanUserReorderColumns="False" 
             CanUserSortColumns = "False"  VerticalScrollBarVisibility="Visible" SelectionMode="Single" 
             BorderBrush="Gray" BorderThickness="5" GridLinesVisibility="None" SelectionUnit="FullRow" CanUserResizeRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Active" Binding="{Binding Active}" IsReadOnly="False"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="False" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="False" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         <CheckBox Content="Test DB" HorizontalAlignment="Left" Margin="153,113,0,0" VerticalAlignment="Top" FontSize="16"/>

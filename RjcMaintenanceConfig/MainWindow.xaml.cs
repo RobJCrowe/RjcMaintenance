@@ -68,5 +68,26 @@ namespace RjcMaintenanceConfig
                 aeService.ShowDialog();
             }
         }
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            if(!hasSelection()) return;
+            if (settings.removeService(testDgv.SelectedIndex)) { resetSelectionIndex(); }
+        }
+
+        private void Up_Click(object sender, RoutedEventArgs e)
+        {
+            //showMsg();
+            if (hasSelection()) { testDgv.SelectedIndex = settings.serviceUp(testDgv.SelectedIndex); }
+            //showMsg();
+        }
+
+        private void Down_Click(object sender, RoutedEventArgs e)
+        {
+            //showMsg();
+            if (hasSelection()) { testDgv.SelectedIndex = settings.serviceDown(testDgv.SelectedIndex); }
+            //showMsg();
+        }
+        private void showMsg() { MessageBox.Show("index: " + testDgv.SelectedIndex); }
     }
 }

@@ -51,14 +51,14 @@ namespace maintLibrary
         {
             try
             {
-
+                string output = JsonConvert.SerializeObject(this, Formatting.Indented);
+                System.IO.File.WriteAllText(currDir + settingsFilename, output);
             }
             catch (Exception)
             {
                 // log Console.WriteLine("Writting settings failed);
             }
-            string output = JsonConvert.SerializeObject(this, Formatting.Indented);
-            System.IO.File.WriteAllText(currDir+settingsFilename, output);
+            
         }
 
         public bool addService(service s)
@@ -71,6 +71,34 @@ namespace maintLibrary
         {
             try { services.Insert(index, s); services.RemoveAt(index + 1); return true; }
             catch (Exception) { return false; }
+        }
+
+        public bool removeService(int index)
+        {
+            try { this.services.RemoveAt(index); return true; }
+            catch (Exception) {return false; }
+        }
+
+        public int serviceUp(int index)
+        {
+            if (index != 0)
+            {
+                services.Move(index, index - 1);
+                if (index - 1 == -1) return 0;
+                else { return index - 1; }
+            }
+            else { return 0; }
+            
+        }
+        public int serviceDown(int index)
+        {
+            if (index != services.Count-1)
+            {
+                services.Move(index, index + 1);
+                if (index + 1 == services.Count) return services.Count;
+                else { return index + 1; }
+            }
+            return services.Count-1; 
         }
 
         private void SampleServices()
