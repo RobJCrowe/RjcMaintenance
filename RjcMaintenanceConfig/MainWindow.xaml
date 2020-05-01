@@ -16,7 +16,7 @@
         <Button x:Name="Remove" Content="Remove Service" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Remove_Click"/>
         <Button x:Name="Up" Content="Move Up" HorizontalAlignment="Left" Margin="153,19,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Up_Click"/>
         <Button x:Name="Down" Content="Move Down" HorizontalAlignment="Left" Margin="153,49,0,0" VerticalAlignment="Top" Width="133" FontSize="16" Click="Down_Click"/>
-        <CheckBox x:Name="Log" Content="Log to DB" HorizontalAlignment="Left" Margin="153,83,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <CheckBox x:Name="Log" Content="Log to DB" HorizontalAlignment="Left" Margin="153,114,0,0" VerticalAlignment="Top" FontSize="16" Click="Log_Click"/>
         <Button x:Name="Save" Content="Save Settings" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="133" FontSize="16" RenderTransformOrigin="0.421,4.8" Click="Save_Click"/>
         <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="133" FontSize="16" RenderTransformOrigin="0.421,4.8" Click="ExitButton_Click"/>
         <Button x:Name="temp" Content="Examine source" HorizontalAlignment="Left" Margin="153,171,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click_2" RenderTransformOrigin="-3.446,1.376"/>
@@ -31,6 +31,7 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="False" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <CheckBox Content="Test DB" HorizontalAlignment="Left" Margin="153,113,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <CheckBox x:Name="TestDB" Content="TestDB" HorizontalAlignment="Left" Margin="153,144,0,0" VerticalAlignment="Top" FontSize="16" Click="TestDB_CheckBox_Click"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Height="23" Margin="153,81,0,0" VerticalAlignment="Top" Width="133"/>
     </Grid>
 </Window>

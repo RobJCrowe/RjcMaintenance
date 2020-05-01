@@ -10,8 +10,9 @@ namespace maintLibrary
 {
     public class Settings
     {
-
-        static string currDir; static public bool testDB;
+        [JsonProperty]
+        public bool testDB = false, logToDb = false;  public string password;
+        static string currDir; 
         static string settingsFilename = @"\settings.json";
         [JsonProperty]
         public ObservableCollection<service> services { get; set; }
@@ -47,16 +48,18 @@ namespace maintLibrary
             catch(Exception e){ return null; /* log- Console.WriteLine("Reading settings file failed."); */ }
         }
         
-        public void WriteSettings()
+        public bool WriteSettings()
         {
             try
             {
                 string output = JsonConvert.SerializeObject(this, Formatting.Indented);
                 System.IO.File.WriteAllText(currDir + settingsFilename, output);
+                return true;
             }
             catch (Exception)
             {
                 // log Console.WriteLine("Writting settings failed);
+                return false;
             }
             
         }

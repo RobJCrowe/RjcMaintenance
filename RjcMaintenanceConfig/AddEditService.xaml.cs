@@ -52,7 +52,6 @@ namespace RjcMaintenanceConfig
         private void Save_Button(object sender, RoutedEventArgs e)
         {
             _service.Name = tbName.Text; _service.location = tbLocation.Text; _service.additionalArgs = tbArgs.Text;
-            //_service.Active = cbActive.IsChecked.HasValue ? cbActive.IsChecked.Value : false;
             _service.Active = cbActive.IsChecked ?? false;
             if (_isNew) { _settings.addService(_service); }
             else { _settings.editService(_service, _index); }

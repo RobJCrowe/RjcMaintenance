@@ -13,7 +13,7 @@ namespace maintLibrary
     public class service : INotifyPropertyChanged
     {
         [JsonProperty]
-        public string owner, location, additionalArgs;
+        public string location, additionalArgs, owner;
         private string name; private bool active;
         public string Name
         {

@@ -24,7 +24,6 @@ namespace RjcMaintenanceConfig
     public partial class MainWindow : Window
     {
         Settings settings;
-        //ObservableCollection<service> tempServices = new ObservableCollection<service>();
         public MainWindow() { InitializeComponent(); }
         private void resetSelectionIndex() { testDgv.SelectedIndex = -1; }
         private bool hasSelection() 
@@ -36,6 +35,8 @@ namespace RjcMaintenanceConfig
             }
             return true;
         }
+        private void loadValues() { Log.IsChecked = settings.logToDb; TestDB.IsChecked = settings.testDB;
+            password.Password = settings.password; }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             resetSelectionIndex();
@@ -43,22 +44,19 @@ namespace RjcMaintenanceConfig
             AddEditService aeService = new AddEditService(settings, temp, true, 0);
             aeService.ShowDialog();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             settings = Settings.GetSettings();
             testDgv.ItemsSource = settings.services;
             testDgv.CanUserAddRows = false;
+            loadValues();
         }
-
         private void ExitButton_Click(object sender, RoutedEventArgs e) { Environment.Exit(0); }
-
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             ObservableCollection<service> temp = new ObservableCollection<service>();
             temp = settings.services;
         }
-
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             if (hasSelection())
@@ -68,31 +66,31 @@ namespace RjcMaintenanceConfig
                 aeService.ShowDialog();
             }
         }
-
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
             if(!hasSelection()) return;
             if (settings.removeService(testDgv.SelectedIndex)) { resetSelectionIndex(); }
         }
-
         private void Up_Click(object sender, RoutedEventArgs e)
         {
-            //showMsg();
             if (hasSelection()) { testDgv.SelectedIndex = settings.serviceUp(testDgv.SelectedIndex); }
-            //showMsg();
         }
-
         private void Down_Click(object sender, RoutedEventArgs e)
         {
-            //showMsg();
             if (hasSelection()) { testDgv.SelectedIndex = settings.serviceDown(testDgv.SelectedIndex); }
-            //showMsg();
         }
-        private void showMsg() { MessageBox.Show("index: " + testDgv.SelectedIndex); }
-
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            settings.WriteSettings();
+            settings.password = (Log.IsChecked==true)?password.Password:"";
+            if (settings.WriteSettings()) { write("Settings saved."); }
+            else { write("Writing settings failed."); }
+        }
+        private void write(string s) { MessageBox.Show(s); }
+        private void Log_Click(object sender, RoutedEventArgs e) { settings.logToDb = Log.IsChecked ?? false; }
+
+        private void TestDB_CheckBox_Click(object sender, RoutedEventArgs e) 
+        {
+            settings.testDB = TestDB.IsChecked ?? false;
         }
     }
 }
