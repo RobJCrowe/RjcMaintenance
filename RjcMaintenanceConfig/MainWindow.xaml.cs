@@ -89,5 +89,10 @@ namespace RjcMaintenanceConfig
             //showMsg();
         }
         private void showMsg() { MessageBox.Show("index: " + testDgv.SelectedIndex); }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            settings.WriteSettings();
+        }
     }
 }
