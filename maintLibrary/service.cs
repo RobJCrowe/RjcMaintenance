@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 
 namespace maintLibrary
 {
-
     public class service : INotifyPropertyChanged
     {
         [JsonProperty]

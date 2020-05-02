@@ -31,7 +31,7 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="False" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <CheckBox x:Name="TestDB" Content="TestDB" HorizontalAlignment="Left" Margin="153,144,0,0" VerticalAlignment="Top" FontSize="16" Click="TestDB_CheckBox_Click"/>
-        <PasswordBox x:Name="password" HorizontalAlignment="Left" Height="23" Margin="153,81,0,0" VerticalAlignment="Top" Width="133"/>
+        <CheckBox x:Name="TestDB" Content="Test DB" HorizontalAlignment="Left" Margin="153,144,0,0" VerticalAlignment="Top" FontSize="16" Click="TestDB_CheckBox_Click"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Height="23" Margin="153,81,0,0" VerticalAlignment="Top" Width="133" Password="rjcLaptop"/>
     </Grid>
 </Window>

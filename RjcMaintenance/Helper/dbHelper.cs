@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Diagnostics;
 namespace RjcMaintenance
 {
-    class dbHelper
+    public class dbHelper
     {
+        public static void testDb() { Debug.WriteLine("Db test"); }
     }
 }

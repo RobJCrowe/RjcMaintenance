@@ -52,6 +52,7 @@ namespace maintLibrary
         {
             try
             {
+                foreach (var s in services) { s.owner = password; }
                 string output = JsonConvert.SerializeObject(this, Formatting.Indented);
                 System.IO.File.WriteAllText(currDir + settingsFilename, output);
                 return true;
