@@ -26,6 +26,7 @@ namespace RjcMaintenanceConfig
         service _service;
         bool _isNew;
         int _index;
+        Dictionary<string, string> presetList = new Dictionary<string, string>();
         public AddEditService(Settings settings, service service, bool isNew, int index)
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace RjcMaintenanceConfig
                 tbName.Text = service.Name; tbLocation.Text = service.location; 
                 tbArgs.Text = service.additionalArgs; cbActive.IsChecked = service.Active;
             }
+            presetList = _settings.getPresets(); argPresets.ItemsSource = presetList;
         }
 
         private void Browse_Button_Click(object sender, RoutedEventArgs e)
@@ -56,6 +58,14 @@ namespace RjcMaintenanceConfig
             if (_isNew) { _settings.addService(_service); }
             else { _settings.editService(_service, _index); }
             this.Close();
+        }
+
+        private void argPresets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            KeyValuePair<string, string> selectedEntry = (KeyValuePair<string, string>) comboBox.SelectedItem;
+            _service.additionalArgs = selectedEntry.Value; tbArgs.Text= selectedEntry.Value;
+            _service.Name = selectedEntry.Key; tbName.Text = selectedEntry.Key;
         }
     }
 }

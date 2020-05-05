@@ -16,6 +16,7 @@ namespace maintLibrary
         static string settingsFilename = @"\settings.json";
         [JsonProperty]
         public ObservableCollection<service> services { get; set; }
+        public Dictionary<string, string> presetList = new Dictionary<string, string>();
         // other variables
 
         public Settings()
@@ -23,6 +24,7 @@ namespace maintLibrary
             try
             {
                 currDir = Directory.GetCurrentDirectory();
+                generatePresets();
                 //SampleServices();
             }
             catch (Exception)
@@ -32,6 +34,16 @@ namespace maintLibrary
             }
         }
 
+        private void generatePresets()
+        {
+            presetList.Add("Auslogic Disk Defrag", @" {driveLetter}: -o");
+            presetList.Add("CCleaner", @" /Auto");
+            presetList.Add("FreeFileSync", @" ""path.ffs_batch""");
+            presetList.Add("Macrium Reflect Drive Image", @" -e -w  -full ""path.xml""");
+            presetList.Add("Microsoft Malware Removal Tool", @" /quiet /F:Y");
+            presetList.Add("Microsoft Security Essentials", @" -Scan -Scantype 2");
+        }
+        public Dictionary<string, string> getPresets() { return presetList; }
         public static Settings GetSettings()
         {
             try
