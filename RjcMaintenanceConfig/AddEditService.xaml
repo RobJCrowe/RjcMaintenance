@@ -25,7 +25,7 @@
         <Button Content="Cancel" Grid.Column="2" HorizontalAlignment="Left" Margin="91,203,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.907,1" Height="25" Click="Exit_Button"/>
         <Label Content="Args Presets:" HorizontalAlignment="Left" Margin="27,89,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1" Height="31" Width="107"/>
         <ComboBox x:Name="argPresets" Grid.Column="2" HorizontalAlignment="Left" Margin="3,94,0,0" VerticalAlignment="Top" Width="597" Height="27" SelectedValuePath="Value" DisplayMemberPath="Key" SelectionChanged="argPresets_SelectionChanged" />
-        <Button Content="Browse" Grid.Column="2" HorizontalAlignment="Left" Margin="605,63,0,0" VerticalAlignment="Top" Width="55" Click="Browse_Button_Click" Height="25"/>
+        <Button Content="Browse" Grid.Column="2" HorizontalAlignment="Left" Margin="605,63,0,0" VerticalAlignment="Top" Width="65" Click="Browse_Button_Click" Height="25"/>
 
     </Grid>
 </Window>
